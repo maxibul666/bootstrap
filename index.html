@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Final - El Gato con Botas</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #EFE3C6;
+      color: #111111;
+      margin: 0;
+    }
+
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+      color: #4b2e19;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      font-family: 'Alegreya', serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #3a2a1a;
+      margin-bottom: 1rem;
+    }
+
+    p, li, .lista-decisiones {
+      font-family: 'Alegreya', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #3a2a1a;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .top-space { height: 80px; }
+
+    .banner-wrapper {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #F3E5C8;
+      text-shadow: 0 0 15px rgba(0,0,0,0.9), 3px 3px 0 #4b2e19;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .frame-pergamino {
+  padding: 12px;
+  background: #d9c5a3;
+  border: 2px solid #8f6c4c;
+  border-radius: 8px;
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.25),
+    inset 0 0 20px rgba(139, 108, 76, 0.2);
+  position: relative;
+  display: inline-block;
+}
+
+.frame-pergamino::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed #4b2e19;
+  border-radius: 6px;
+  opacity: 0.4;
+}
+
+    
+
+    @media (max-width: 768px) {
+      .banner-title { font-size: 2.5rem; letter-spacing: 1.5px; }
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      max-width: 1300px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section-text { grid-column: span 6; }
+    .section-img { grid-column: span 6; }
+    .section-img img { width: 100%; border-radius: 10px; object-fit: cover; }
+
+    .juegos-section, .proceso-section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .juegos-grid, .proceso-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .proceso-grid { gap: 25px; }
+
+    .game-card, .proceso-card {
+      background-color: #d9c5a3;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      text-align: left;
+    }
+
+    .game-card img {
+      width: 70%;
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 10px;
+    }
+
+    .lista-decisiones {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+
+    .game-card-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .game-card-button button {
+      background: #5A4634;
+      color: #F3E5C8;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    .game-card-button button:hover {
+      background: #7a6048;
+    }
+
+    .game-frame {
+      width: calc(100vw - 40px);
+      height: calc(100vh - 120px);
+      border: none;
+      margin: 0 auto;
+      display: block;
+    }
+
+  
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">El Gato con Botas</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#juegos">Juegos interactivos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proceso">Proceso de producción</a></li>
+          <li class="nav-item"><a class="nav-link" href="#integrantes">Integrantes</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="top-space"></div>
+
+  <div class="banner-wrapper">
+    <img class="banner-img" src="imagenes/gato.jpg" alt="Banner">
+    <div class="banner-title" style="color: #ffffff">Proyecto Final – El Gato con Botas Interactivo</div>
+  </div>
+
+  <div class="grid-12">
+    <div class="section-text">
+      <h2>Una reinterpretación interactiva del clásico</h2>
+      <p>Bienvenido al mundo del Gato con Botas, donde una sola aventura puede tomar muchos caminos distintos. En este proyecto exploramos una historia original inspirada en el legendario héroe felino, llena de decisiones, rutas alternativas y momentos que cambian el rumbo del relato. Prepárate para vivir una experiencia única, donde cada elección abre un nuevo sendero en la leyenda.</p>
+    </div>
+    <div class="section-img">
+      <img src="imagenes/foto1.jpg" alt="Imagen descriptiva">
+    </div>
+  </div>
+  
+  <section id="juegos" class="juegos-section">
+    <h2>Juegos Interactivos</h2>
+    <div class="juegos-grid">
+
+      <div class="game-card">
+        <div class="frame-pergamino">
+        <img src="imagenes/foto8.jpg" alt="Aventura Gráfica" class="img-fluid rounded">
+        </div>
+        <h3>Aventura Gráfica</h3>
+        <p>Una experiencia narrativa donde tomás decisiones clave que cambian la historia. Explorá escenarios, hablá con personajes y elegí tu propio camino.</p>
+        <ul class="lista-decisiones">
+          <li>Explorar el mundo del Gato con Botas</li>
+          <li>Elegir diálogos importantes</li>
+          <li>Resolver situaciones clave</li>
+          <li>Descubrir finales alternativos</li>
+        </ul>
+        <div class="game-card-button">
+          <button class="btn" data-bs-toggle="modal" data-bs-target="#modalAventura">Jugar</button>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="frame-pergamino">
+        <img src="imagenes/foto10.jpg" alt="Minijuego" class="img-fluid rounded">
+        </div>
+        <h3>Minijuego</h3>
+        <p>Un desafío arcade inspirado en la historia principal. Poné a prueba tus reflejos y descubrí cómo se conecta con la aventura gráfica.</p>
+        <p>El minijuego representa las batallas rápidas del Gato con Botas dentro de la narrativa.</p>
+        <div class="game-card-button">
+          <button class="btn" data-bs-toggle="modal" data-bs-target="#modalJuego">Jugar</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="modal fade" id="modalAventura" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-black">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0 d-flex justify-content-center align-items-center">
+          <iframe class="game-frame" src="tpfinalparte1/index.html"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalJuego" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-black">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0 d-flex justify-content-center align-items-center">
+          <iframe class="game-frame" src="tpfinalparte2/index.html"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="proceso" class="proceso-section">
+    <h2>Proceso de Producción</h2>
+    <div class="proceso-grid">
+      <div class="proceso-card">
+        <h3>Aventura Gráfica</h3>
+        <p>Primero creamos el diagrama de flujo enumerando cada una de las pantallas, la historia principal asciende de 1 en uno y las historias secundarias tambien pero parten de un numero por fuera de la historia principal para no interferir en esta. Luego creamos los textos de las historias junto con las imagenes con su respectiva enumeracion. Por ultimo programamos en processing.</p>
+      </div>
+      <div class="proceso-card">
+        <h3>Minijuego</h3>
+        <p>Primero definimos el tipo de juego que ibamos a hacer. Luego definimos las clases que utilizariamos en un diagrama de clases. Seguimos creando los assets necesarios y buscando los sonidos. Por ultimo programamos en processing.</p>
+      </div>
+      <div class="proceso-card">
+        <h3>Página Web</h3>
+        <p>Primero definimos las secciones que tendría la página, luego buscamos una paleta de colores y tipografias estilo medieval por el contexto de la historia del gato con botas. Seguimos definiendo que framework usar (en este caso bootstrap). Luego decidimos usar card, modal y collapse como componentes a destacar.</p>
+      </div>
+    </div>
+  </section>
+
+    <section id="integrantes" class="container text-center mt-5 pb-5">
+    <h2>Integrantes</h2>
+
+    <div class="row mt-4 justify-content-center">
+
+      
+      <div class="col-10 col-md-5 mb-4">
+        <img src="imagenes/persona1.jpg" class="img-fluid rounded" alt="Foto Lautaro" data-bs-toggle="collapse" data-bs-target="#lautaroInfo" style="cursor:pointer; background:#444; height:250px; object-fit:cover;">
+        <div class="collapse mt-2" id="lautaroInfo">
+            <div class="p-3 rounded text-light" style="background-color: #4b2e19;">
+          <p class="mb-0" style="color: #ffffff"><strong>Lautaro Cáceres</strong><br>
+            Amante de los deportes, el lol y la pizza </p>
+            </div>
+        </div>
+      </div>
+
+      
+      <div class="col-10 col-md-5 mb-4">
+        <img src="imagenes/persona2.jpg" class="img-fluid rounded" alt="Foto Maximo" data-bs-toggle="collapse" data-bs-target="#maximoInfo" style="cursor:pointer; background:#444; height:250px; object-fit:cover;">
+        <div class="collapse mt-2" id="maximoInfo">
+            <div class="p-3 rounded text-light" style="background-color: #4b2e19;">
+          <p class="mb-0" style="color: #ffffff"><strong>Máximo Maldonado</strong><br>
+            Amante de la música, de los videojuegos y las pastas</p>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
+  <footer class="bg-dark text-light py-5 mt-5">
+    <div class="container">
+      <div class="row text-center text-md-start">
+
+        
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase fw-bold mb-3" style="color: #F3E5C8;">Materia</h5>
+          <p class="mb-1" style="color: #ffffff">Programación pars medios interactivos orientada a las tecnologias web</p>
+          <p class="mb-0" style="color: #ffffff">Año 2025</p>
+        </div>
+
+        
+        <div class="col-md-6">
+          <h5 class="text-uppercase fw-bold mb-3" style="color: #F3E5C8;">Integrantes del grupo</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2" style="color: #ffffff">• Lautaro Caceres</li>
+            <li style="color: #ffffff">• Máximo Maldonado</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="my-4 border-secondary">
+
+      <div class="text-center">
+        <small>© 2025 El Gato con Botas Interactivo – Trabajo Práctico Final</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
